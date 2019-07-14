@@ -1,4 +1,3 @@
-
 <%- include("layout/header") %>
         <p>กรองสถานะ : <a href="#">ทั้งหมด</a> | <a href="#">Completed</a> | <a href="#">Incomplete</a></p>
 <div class="panel panel-default">
@@ -19,26 +18,24 @@
             </tr>
         </thead>
         <tbody>
+            <% activities.forEach(function(activity){ %>
             <tr>
-                <td>1</td>
-                <td>ซื้อสินค้าที่ Super Market</td>
-                <td>Shopping</td>
-                <td>Incomplete</td>
+                <td><%= activity.id %></td>
+                <td><%= activity.detail %></td>
+                <td><%= activity.name %></td>
+                <td>
+                    <% if(activity.status == 0) { %>
+                        ยังไม่ได้ทำ
+                        <% }else { %>
+                            ทำแล้ว
+                            <% } %>
+                </td>
                 <td>
                     <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
+                    <a href="/delete/<%= activity.id %>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>พาหมาไปวิ่งเล่น</td>
-                <td>Activity</td>
-                <td>Completed</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
-                </td>
-            </tr>
+            <% }) %>
         </tbody>
     </table>
 </div>
